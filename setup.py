@@ -6,7 +6,7 @@ version = '0.1.0'
 setup(name='collective.websemantic.base',
       version=version,
       description="A websemantic tool for Plone",
-      long_description=open("README.txt").read() + "\n" +
+      long_description=open("README.md").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
@@ -24,12 +24,14 @@ setup(name='collective.websemantic.base',
       include_package_data=True,
       zip_safe=False,
       install_requires=[
-          'setuptools',
-          # -*- Extra requirements: -*-
+            'setuptools',
+            'stanbol.client',
+            'Plone',
+            'plone.app.registry',
+            'jquery.pyproxy'
       ],
       entry_points="""
       # -*- Entry points: -*-
-
       [z3c.autoinclude.plugin]
       target = plone
       """,
