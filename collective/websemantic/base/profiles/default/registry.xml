@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<registry>
+ <records interface="collective.websemantic.base.controlpanel.stanbolpanel.IStanbolSettings" />
+ <records interface="collective.websemantic.base.controlpanel.datatxtpanel.IDatatxtSettings" />
+</registry>
+

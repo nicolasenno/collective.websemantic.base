@@ -1,0 +1,16 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="collective.websemantic.base">
+ 
+    <subscriber for="Products.Archetypes.interfaces.IBaseObject
+                     Products.Archetypes.interfaces.IObjectInitializedEvent"
+         handler=".subscribers.indexer_handler" />
+         
+    <subscriber for="Products.Archetypes.interfaces.IBaseObject
+                     Products.Archetypes.interfaces.IObjectEditedEvent"
+          handler=".subscribers.indexer_handler" />
+
+</configure>

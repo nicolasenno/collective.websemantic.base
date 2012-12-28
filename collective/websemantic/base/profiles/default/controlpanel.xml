@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object name="portal_controlpanel"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="collective.websemantic.base"
+    purge="False">
+    
+    <configlet title="Stanbol Settings"
+            action_id="stanbol_settings"
+            appId="collective.websemantic.base"
+            category="Products"
+            condition_expr=""
+            url_expr="string:${portal_url}/@@stanbol-settings"
+            visible="True"
+            i18n:attributes="title">
+        <permission>Manage portal</permission>
+    </configlet>
+    
+    <configlet title="Datatxt Settings"
+            action_id="datatxt_settings"
+            appId="collective.websemantic.base"
+            category="Products"
+            condition_expr=""
+            url_expr="string:${portal_url}/@@datatxt-settings"
+            visible="True"
+            i18n:attributes="title">
+        <permission>Manage portal</permission>
+    </configlet>
+    
+</object>

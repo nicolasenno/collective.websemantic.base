@@ -1,0 +1,6 @@
+<layers>
+ <layer
+     name="collective.websemantic.base"
+     interface="collective.websemantic.base.Layer"
+ />
+</layers>
