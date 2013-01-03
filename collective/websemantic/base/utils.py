@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # encoding=utf8
 from Products.CMFCore.utils import getToolByName
-from collective.websemantic.base.controlpanel.stanbolpanel import \
-    IStanbolSettings
-from datatxt.client import Datatxt
+from collective.websemantic.base.controlpanel.stanbolpanel import IStanbolSettings
+from collective.websemantic.base.controlpanel.datatxtpanel import IDatatxtSettings
 from plone.registry.interfaces import IRegistry
 from stanbol.client import Stanbol
+from datatxt.client import Datatxt
 from zope.app.component.hooks import getSite
 from zope.component import getUtility
 
@@ -27,16 +27,16 @@ def get_datatxt(context):
     Utilitary function to access Stanbol preferences
     """
     registry = getUtility(IRegistry)
-    settings = registry.forInterface(IDatatxtlSettings)
+    settings = registry.forInterface(IDatatxtSettings)
     app_key = settings.app_key
     app_id = settings.app_id
-    lang = settings.lang
+    lang = settings.app_lang
     api_url = settings.api_url
     rho = settings.rho
     epsilon = settings.epsilon
     long_text = settings.long_text
-    prefix = settings.prefix
-    endpoint = "%s%s" % (settings.prefix, 'ss')
+    prefix = settings.dbpedia
+    endpoint = "%s%s" % (prefix, '/sparql')
     return Datatxt(app_key, app_id, lang, api_url, rho, epsilon, long_text, prefix, endpoint)
 
 

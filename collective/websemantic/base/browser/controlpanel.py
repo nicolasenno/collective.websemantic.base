@@ -1,15 +1,32 @@
-from Products.CMFCore.utils import getToolByName
-from Products.CMFDefault.formlib.schema import ProxyFieldProperty, \
-    SchemaAdapterBase
-from Products.CMFPlone.interfaces import IPloneSiteRoot
-from collective.websemantic.base import WebsemanticBaseMessageFactory as _
-from plone.app.registry.browser import controlpanel
+'''
+Created on Jul 7, 2011
+
+@author: "Encolpe Degoute"
+@author: "Jens W. Klein"
+@author: "Yannis Mazzer"
+'''
+
+from zope.schema import (
+    Int,
+    TextLine,
+    Tuple,
+    Text,
+)
+
 from zope.component import adapts
-from zope.interface import Interface, implements
-from zope.schema import Int, TextLine, Tuple, Text
+from zope.interface import Interface
+from zope.interface import implements
 
+from Products.CMFPlone.interfaces import IPloneSiteRoot
+from Products.CMFDefault.formlib.schema import ProxyFieldProperty
+from Products.CMFDefault.formlib.schema import SchemaAdapterBase
+from Products.CMFCore.utils import getToolByName
 
-class IStanbolSettings(Interface):
+from plone.app.registry.browser import controlpanel
+
+from stanbol.plone import StanbolMessageFactory as _
+
+class IWebSemanticSettings(Interface):
     """
     Stanbol Preference Panel Interface
     """
@@ -38,24 +55,23 @@ class IStanbolSettings(Interface):
         default=u'9000',
     )
 
-class StanbolControlPanelEditForm(controlpanel.RegistryEditForm):
+class WebSemanticControlPanelEditForm(controlpanel.RegistryEditForm):
 
-    schema = IStanbolSettings
+    schema = IWebSemanticSettings
     label = _('Stanbol server settings')
     description = _('Enter Stanbol server settings to use with this site.')
     form_name = _('Stanbol')
 
     def updateFields(self):
-        super(StanbolControlPanelEditForm, self).updateFields()
-
+        super(WebSemanticControlPanelEditForm, self).updateFields()
 
     def updateWidgets(self):
-        super(StanbolControlPanelEditForm, self).updateWidgets()
+        super(WebSemanticControlPanelEditForm, self).updateWidgets()
 
 
-class StanbolControlPanel(controlpanel.ControlPanelFormWrapper):
+class WebSemanticControlPanel(controlpanel.ControlPanelFormWrapper):
     """
     Stanbol Control Panel Form
     """
-    form = StanbolControlPanelEditForm
+    form = WebSemanticControlPanelEditForm
 

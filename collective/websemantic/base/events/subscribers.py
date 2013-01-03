@@ -1,17 +1,17 @@
-from collective.websemantic.base.utils import get_stanbol
-from Products.statusmessages.interfaces import IStatusMessage
 from Products.CMFCore.utils import getToolByName
+from Products.statusmessages.interfaces import IStatusMessage
+from collective.websemantic.base.utils import get_stanbol, get_datatxt
+import pdb
 
 def indexer_handler(obj, event):
     obj._stanbol_enhancements = None
-    stanbol = get_stanbol(obj)
+    #stanbol = get_stanbol(obj)
     try:
-        import pdb;pdb.set_trace()
         transforms = getToolByName(obj, 'portal_transforms')
         stream = transforms.convertTo('text/plain', obj.getText(), mimetype='text/html')
         text = stream.getData().strip()
 #        obj._stanbol_enhancements = stanbol.engines(text, 'rdfjson')
-        
+        pdb.set_trace()
         datatxt = get_datatxt(obj)
         res = datatxt.annotate(text)
 
