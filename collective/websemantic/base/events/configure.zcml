@@ -9,8 +9,8 @@
                      Products.Archetypes.interfaces.IObjectInitializedEvent"
          handler=".subscribers.indexer_handler" />
          
-    <subscriber for="Products.Archetypes.interfaces.IBaseObject
+    <!-- <subscriber for="Products.Archetypes.interfaces.IBaseObject
                      Products.Archetypes.interfaces.IObjectEditedEvent"
-          handler=".subscribers.indexer_handler" />
+          handler=".subscribers.indexer_handler" />-->
 
 </configure>
