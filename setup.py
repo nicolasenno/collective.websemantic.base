@@ -25,11 +25,8 @@ setup(name='collective.websemantic.base',
       zip_safe=False,
       install_requires=[
             'setuptools',
-            'datatxt.client',
-            'stanbol.client',
             'Plone',
             'plone.app.registry',
-            'jquery.pyproxy'
       ],
       entry_points="""
       # -*- Entry points: -*-

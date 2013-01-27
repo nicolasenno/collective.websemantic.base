@@ -10,12 +10,14 @@
     <include package="Products.CMFPlone" />
     <include package="plone.app.registry" />
     <include package=".events" />
+    <include package=".utilities" />
     <includeDependencies package="." />
     <include file="profiles.zcml" />
 
 	<!-- Control panlels-->
-    <browser:page
-        name="stanbol-settings"
+
+	<browser:page
+        name="websemantic-settings"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         class=".controlpanel.stanbolpanel.StanbolControlPanel"
         permission="cmf.ManagePortal"
@@ -28,12 +30,12 @@
         permission="cmf.ManagePortal"
         />
 
-    <browser:page
+    <!--<browser:page
       	name="enhancer"
         for="Products.Archetypes.interfaces.IBaseObject"
         layer="collective.websemantic.base.Layer"
         permission="zope2.View"
         template="templates/enhancer.pt"
         />
-
+	-->
 </configure>

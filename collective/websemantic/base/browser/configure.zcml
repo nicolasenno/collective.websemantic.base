@@ -4,28 +4,13 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-    i18n_domain="stanbol.plone">
+    i18n_domain="collective.websemantic.base">
 
     <five:registerPackage package="." initialize=".initialize" />
-
-    <!-- -*- extra stuff goes here -*- -->
-
-    <include package="Products.CMFPlone" />
-
-    <include package="plone.app.registry" />
-
+    <include package="Products.CMFPlone" />>
     <include file="profiles.zcml" />
 
     <includeDependencies package="." />
-
-    <!-- Control Panel -->
-
-    <browser:page
-        name="websemantic-settings"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".controlpanel.stanbolpanel.StanbolControlPanel"
-        permission="cmf.ManagePortal"
-        />
 
 
  </configure>
