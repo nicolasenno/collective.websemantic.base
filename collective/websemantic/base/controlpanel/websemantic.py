@@ -14,21 +14,21 @@ class IWebSemanticSettings(Interface):
     """
     Web Semantic Base preference panel Interface
     """
-    
-    web_semantic_plugin = Choice (
-        title=u'Web semantic plugin',
-        description=_('help_web_semantic_plugin',
+
+    web_semantic_plugins = Choice (
+        title=u'Web semantic plugins names',
+        description=_('help_web_semantic_plugins_names',
             default=u"Please select the Web semantic plugin."
         ),
+        vocabulary=u"plugins_names",
         required=True,
-        vocabulary = "websemantic.base.plugins",
     )
 
 
 class WebSemanticControlPanelEditForm(controlpanel.RegistryEditForm):
 
-    schema = IWebSemanticSettings
     label = _('Web Semantic Base settings')
+    schema = IWebSemanticSettings
     description = _('Enter settings to use with this site.')
     form_name = _('Web Semantic Base')
 

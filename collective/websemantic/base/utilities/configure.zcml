@@ -4,7 +4,9 @@
     i18n_domain="collective.websemantic.base">
 
     <utility
-    	component=".vocabularies.Plugins"
-    	name="websemantic.base.plugins"/>
+    	component=".vocabularies.pluginsNames"
+    	name="plugins_names"
+    	provides="zope.schema.interfaces.IVocabularyFactory"
+    	/>
 
  </configure>

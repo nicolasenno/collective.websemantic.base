@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <registry>
- <records interface="collective.websemantic.base.controlpanel.stanbolpanel.IStanbolSettings" />
- <records interface="collective.websemantic.base.controlpanel.websemanticbasepanel.IDatatxtSettings" />
+ <records interface="collective.websemantic.base.controlpanel.websemantic.IWebSemanticSettings" />
 </registry>
 

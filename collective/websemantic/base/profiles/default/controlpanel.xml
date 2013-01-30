@@ -4,23 +4,12 @@
     i18n:domain="collective.websemantic.base"
     purge="False">
     
-    <configlet title="Stanbol Settings"
-            action_id="stanbol_settings"
+    <configlet title="WebSemantic Settings"
+            action_id="websemantic_settings"
             appId="collective.websemantic.base"
             category="Products"
             condition_expr=""
-            url_expr="string:${portal_url}/@@stanbol-settings"
-            visible="True"
-            i18n:attributes="title">
-        <permission>Manage portal</permission>
-    </configlet>
-    
-    <configlet title="Datatxt Settings"
-            action_id="datatxt_settings"
-            appId="collective.websemantic.base"
-            category="Products"
-            condition_expr=""
-            url_expr="string:${portal_url}/@@datatxt-settings"
+            url_expr="string:${portal_url}/@@websemantic-settings"
             visible="True"
             i18n:attributes="title">
         <permission>Manage portal</permission>

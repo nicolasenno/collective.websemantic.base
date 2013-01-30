@@ -6,7 +6,8 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="collective.websemantic.base">
 
-    <five:registerPackage package="." initialize=".initialize" />  
+    <five:registerPackage package="." initialize=".initialize" />
+    
     <include package="Products.CMFPlone" />
     <include package="plone.app.registry" />
     <include package=".events" />
@@ -19,16 +20,10 @@
 	<browser:page
         name="websemantic-settings"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".controlpanel.stanbolpanel.StanbolControlPanel"
+        class=".controlpanel.websemantic.WebSemanticControlPanel"
         permission="cmf.ManagePortal"
         />
 	
-	<browser:page
-        name="datatxt-settings"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".controlpanel.datatxtpanel.DatatxtControlPanel"
-        permission="cmf.ManagePortal"
-        />
 
     <!--<browser:page
       	name="enhancer"
