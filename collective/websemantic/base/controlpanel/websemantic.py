@@ -3,19 +3,19 @@ from Products.CMFCore.utils import getToolByName
 from Products.CMFDefault.formlib.schema import ProxyFieldProperty, \
     SchemaAdapterBase
 from Products.CMFPlone.interfaces import IPloneSiteRoot
-from plone.app.registry.browser import controlpanel
 from collective.websemantic.base import WebsemanticBaseMessageFactory as _
-from zope.component import adapts
+from collective.websemantic.base.interfaces import IRetriever
+from plone.app.registry.browser import controlpanel
+from zope.component import adapts, queryUtility
 from zope.interface import Interface, implements
 from zope.schema import Choice, Text
-
 
 class IWebSemanticSettings(Interface):
     """
     Web Semantic Base preference panel Interface
     """
 
-    web_semantic_plugins = Choice (
+    web_semantic_plugin = Choice (
         title=u'Web semantic plugins names',
         description=_('help_web_semantic_plugins_names',
             default=u"Please select the Web semantic plugin."
@@ -32,8 +32,11 @@ class WebSemanticControlPanelEditForm(controlpanel.RegistryEditForm):
     description = _('Enter settings to use with this site.')
     form_name = _('Web Semantic Base')
 
+    list = queryUtility(IRetriever)
+
     def updateFields(self):
         super(WebSemanticControlPanelEditForm, self).updateFields()
+        self.fields['web_semantic_plugin'].widgetFactory = vocabulary = u"plugins_names"
 
     def updateWidgets(self):
         super(WebSemanticControlPanelEditForm, self).updateWidgets()

@@ -8,5 +8,11 @@
     	name="plugins_names"
     	provides="zope.schema.interfaces.IVocabularyFactory"
     	/>
+    
+    <utility
+    	component=".retrievers.getInterface_list"
+    	name="plugins_setting_list_interfaces"
+    	provides="collective.websemantic.base.interfaces.IRetriever"
+    	/>
 
  </configure>

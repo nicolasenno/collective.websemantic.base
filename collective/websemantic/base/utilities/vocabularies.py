@@ -10,12 +10,11 @@ def pluginsNames(context):
     """
     sm = getGlobalSiteManager()
     plugins = [SimpleTerm("", "", _("-- select a plugin --"))]
-    import pdb;pdb.set_trace()
     for adapter in sm.registeredAdapters():
         if adapter.provided == IWebSemanticPlugin:
-            plugins.append(SimpleTerm(value="",
-                                      token="",
-                                      title=_("-- select a plugin --")))
+            plugins.append(SimpleTerm(value=adapter.name,
+                                      token=adapter.name,
+                                      title=adapter.name))
 
     return SimpleVocabulary(plugins)
 
