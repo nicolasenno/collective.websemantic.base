@@ -8,19 +8,21 @@ from collective.websemantic.base.interfaces import IRetriever
 from plone.app.registry.browser import controlpanel
 from zope.component import adapts, queryUtility
 from zope.interface import Interface, implements
-from zope.schema import Choice, Text
+from zope import schema
+from z3c.form.browser.select import SelectWidget
+
 
 class IWebSemanticSettings(Interface):
     """
     Web Semantic Base preference panel Interface
     """
 
-    web_semantic_plugin = Choice (
+    web_semantic_plugin = schema.Choice (
         title=u'Web semantic plugins names',
         description=_('help_web_semantic_plugins_names',
             default=u"Please select the Web semantic plugin."
         ),
-        vocabulary=u"plugins_names",
+        vocabulary=u"collective.websemantic.base.plugins_names",
         required=True,
     )
 
@@ -32,19 +34,21 @@ class WebSemanticControlPanelEditForm(controlpanel.RegistryEditForm):
     description = _('Enter settings to use with this site.')
     form_name = _('Web Semantic Base')
 
-    list = queryUtility(IRetriever)
 
     def updateFields(self):
         super(WebSemanticControlPanelEditForm, self).updateFields()
-        self.fields['web_semantic_plugin'].widgetFactory = vocabulary = u"plugins_names"
+        import pdb;pdb.set_trace()
+        self.fields['web_semantic_plugin']._widgetFactory = SelectWidget
+        retriever = queryUtility(IRetriever, 'plugins_setting_list_interfaces')
+
 
     def updateWidgets(self):
         super(WebSemanticControlPanelEditForm, self).updateWidgets()
-
 
 class WebSemanticControlPanel(controlpanel.ControlPanelFormWrapper):
     """
     Web Semantic Base preference panel form
     """
+
     form = WebSemanticControlPanelEditForm
 

@@ -15,8 +15,8 @@
     <includeDependencies package="." />
     <include file="profiles.zcml" />
 
-	<!-- Control panlels-->
 
+	<!-- Control panlels-->
 	<browser:page
         name="websemantic-settings"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"

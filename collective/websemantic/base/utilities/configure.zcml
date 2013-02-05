@@ -5,12 +5,12 @@
 
     <utility
     	component=".vocabularies.pluginsNames"
-    	name="plugins_names"
+    	name="collective.websemantic.base.plugins_names"
     	provides="zope.schema.interfaces.IVocabularyFactory"
     	/>
-    
+
     <utility
-    	component=".retrievers.getInterface_list"
+    	component=".retrievers.Retriever"
     	name="plugins_setting_list_interfaces"
     	provides="collective.websemantic.base.interfaces.IRetriever"
     	/>
