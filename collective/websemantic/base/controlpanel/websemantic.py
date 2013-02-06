@@ -28,22 +28,20 @@ class IWebSemanticSettings(Interface):
 
 
 class WebSemanticControlPanelEditForm(controlpanel.RegistryEditForm):
+    
 
     label = _('Web Semantic Base settings')
     schema = IWebSemanticSettings
     description = _('Enter settings to use with this site.')
     form_name = _('Web Semantic Base')
-
-
-    def updateFields(self):
-        super(WebSemanticControlPanelEditForm, self).updateFields()
-        import pdb;pdb.set_trace()
-        self.fields['web_semantic_plugin']._widgetFactory = SelectWidget
+    
+    @property
+    def groups(self):
         retriever = queryUtility(IRetriever, 'plugins_setting_list_interfaces')
+        if not retriever:
+            return ()
+        return retriever(self)
 
-
-    def updateWidgets(self):
-        super(WebSemanticControlPanelEditForm, self).updateWidgets()
 
 class WebSemanticControlPanel(controlpanel.ControlPanelFormWrapper):
     """

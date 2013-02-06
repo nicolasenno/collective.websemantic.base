@@ -4,13 +4,13 @@
     i18n_domain="collective.websemantic.base">
 
     <utility
-    	component=".vocabularies.pluginsNames"
+    	component=".vocabularies.PluginsNamesFactory"
     	name="collective.websemantic.base.plugins_names"
     	provides="zope.schema.interfaces.IVocabularyFactory"
     	/>
 
     <utility
-    	component=".retrievers.Retriever"
+    	component=".retrievers.getSettingsClasses"
     	name="plugins_setting_list_interfaces"
     	provides="collective.websemantic.base.interfaces.IRetriever"
     	/>

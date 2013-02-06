@@ -4,22 +4,45 @@ from collective.websemantic.base.interfaces import IRetriever
 from zope.component import getGlobalSiteManager
 from zope.interface import implements
 
-class Retriever(object):
 
-    implements(IRetriever)
 
-    def interfacensDottedNames(self, context):
-        """ Returns a list of dotted interface name from all
-            websemantic plugins
-        """
-        dotted_names = []
-        sm = getGlobalSiteManager()
-        for adapter in sm.registeredAdapters():
-            if adapter.provided == IWebSemanticPlugin:
-                factory = adapter.factory
-                property = factory.settings_interface
-                if property:
-                    dotted_names.append(property.fget(adapter.factory))
+def getSettingsClasses(self):
+    """ Returns a list of dotted interface name from all 
+    websemantic plugins
+    """
+    
+    settings_classes = []
+    sm = getGlobalSiteManager()
+    for adapter in sm.registeredAdapters():
+        if adapter.provided == IWebSemanticPlugin:
+            import pdb;pdb.set_trace()
+            factory = adapter.factory(self)
+            property = factory.settingsClassForm
+            if property:
+                settings_classes.append(property)
+    return settings_classes
 
-        return dotted_names
+
+
+#class Retriever(object):
+#    """ todo
+#    """
+#
+#    def interfacensDottedNames(self):
+#        """ Returns a list of dotted interface name from all
+#            websemantic plugins
+#        """
+#        settings_classes = []
+#        sm = getGlobalSiteManager()
+#        for adapter in sm.registeredAdapters():
+#            if adapter.provided == IWebSemanticPlugin:
+#                import pdb;pdb.set_trace()
+#                factory = adapter.factory(self)
+#                property = factory.settingsClassForm
+#                if property:
+#                    settings_classes.append(property)
+#
+#        return settings_classes
+#RetrieverFactory = Retriever()
+
 

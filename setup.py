@@ -25,7 +25,6 @@ setup(name='collective.websemantic.base',
       zip_safe=False,
       install_requires=[
             'setuptools',
-            'Plone',
             'plone.app.registry',
       ],
       entry_points="""
