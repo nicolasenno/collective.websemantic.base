@@ -6,10 +6,12 @@ from Products.CMFPlone.interfaces import IPloneSiteRoot
 from collective.websemantic.base import WebsemanticBaseMessageFactory as _
 from collective.websemantic.base.interfaces import IRetriever
 from plone.app.registry.browser import controlpanel
-from zope.component import adapts, queryUtility
+from zope.component import queryUtility
 from zope.interface import Interface, implements
 from zope import schema
 from z3c.form.browser.select import SelectWidget
+
+from datatxt.client import FormDatatxtSettings
 
 
 class IWebSemanticSettings(Interface):
@@ -27,20 +29,28 @@ class IWebSemanticSettings(Interface):
     )
 
 
-class WebSemanticControlPanelEditForm(controlpanel.RegistryEditForm):
-    
+class ClassGetter():
+    """pass
+    """
 
-    label = _('Web Semantic Base settings')
-    schema = IWebSemanticSettings
-    description = _('Enter settings to use with this site.')
-    form_name = _('Web Semantic Base')
-    
-    @property
     def groups(self):
         retriever = queryUtility(IRetriever, 'plugins_setting_list_interfaces')
         if not retriever:
-            return ()
+            return []
         return retriever(self)
+
+
+class WebSemanticControlPanelEditForm(controlpanel.RegistryEditForm):
+
+    label = _('Web Semantic Base settings')
+    schema = IWebSemanticSettings
+    groups = FormDatatxtSettings
+    description = _('Enter settings to use with this site.')
+    form_name = _('Web Semantic Base')
+
+#    def updateFields(self):
+#        import pdb;pdb.set_trace()
+#        self.groups = ClassGetter().groups()
 
 
 class WebSemanticControlPanel(controlpanel.ControlPanelFormWrapper):
