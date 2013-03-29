@@ -10,9 +10,10 @@ from zope.component import queryUtility
 from zope.interface import Interface, implements
 from zope import schema
 from z3c.form.browser.select import SelectWidget
-
+from z3c.form import group, field
+from zope.schema import Field
 from datatxt.client import FormDatatxtSettings
-
+from zope.app.component.hooks import getSite 
 
 class IWebSemanticSettings(Interface):
     """
@@ -29,29 +30,34 @@ class IWebSemanticSettings(Interface):
     )
 
 
-class ClassGetter():
-    """pass
-    """
-
-    def groups(self):
-        retriever = queryUtility(IRetriever, 'plugins_setting_list_interfaces')
-        if not retriever:
-            return []
-        return retriever(self)
-
+class SettingsGroup(group.Group):
+    label = _(u"Settings")
+    fields = field.Fields(IWebSemanticSettings)
+    
+    
+def getGroups():
+    portal=getSite()
+    groups = [SettingsGroup,]
+    retriever = queryUtility(IRetriever, 'plugins_setting_list_interfaces')
+    if not retriever:
+        return groups
+    groups.extend(retriever(portal))
+    return groups
 
 class WebSemanticControlPanelEditForm(controlpanel.RegistryEditForm):
 
     label = _('Web Semantic Base settings')
     schema = IWebSemanticSettings
-    groups = FormDatatxtSettings
+    groups = []
     description = _('Enter settings to use with this site.')
     form_name = _('Web Semantic Base')
 
-#    def updateFields(self):
-#        import pdb;pdb.set_trace()
-#        self.groups = ClassGetter().groups()
-
+    def update(self):
+        """ Performe update in order to get all setting tabs
+        """
+        self.groups = getGroups()
+        super(WebSemanticControlPanelEditForm, self).update()
+        
 
 class WebSemanticControlPanel(controlpanel.ControlPanelFormWrapper):
     """

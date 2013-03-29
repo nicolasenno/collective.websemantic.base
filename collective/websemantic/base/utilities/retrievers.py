@@ -18,7 +18,7 @@ def getSettingsClasses(self):
             property = factory.settingsClassForm
             if property:
                 settings_classes.append(property)
-    return settings_classes
+    return tuple(settings_classes)
 
 
 
